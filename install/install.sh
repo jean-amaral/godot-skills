@@ -72,7 +72,8 @@ if [ "$UNINSTALL" -eq 1 ]; then
     for dir in $(agent_dirs "$agent"); do
       for skill in "$REPO_ROOT"/skills/*/; do
         dest="$dir/$(basename "$skill")"
-        if is_our_link "$dest"; then rm "$dest"; echo "REMOVED link $dest"; fi
+if is_our_link "$dest"; then rm "$dest"; echo "REMOVED link $dest"; fi
+        if [ -f "$dest/.godot-skills-copy" ] && [ ! -L "$dest" ]; then rm -rf "$dest"; echo "REMOVED copy $dest"; fi
       done
     done
   done
@@ -102,6 +103,21 @@ for agent in "${AGENTS[@]}"; do
     for skill in "$REPO_ROOT"/skills/*/; do
       name="$(basename "$skill")"
       dest="$dir/$name"
+      if [ "$agent" = "antigravity" ]; then
+        # Antigravity CLI does not follow symlinks when discovering skills
+        # (verified on agy): use real copies, refreshed on every update.
+        if [ -L "$dest" ]; then rm "$dest";
+        elif [ -e "$dest" ] && [ ! -f "$dest/.godot-skills-copy" ]; then
+          echo "SKIP $dest (real directory exists; remove it first to replace with a managed copy)"
+          continue
+        fi
+        rm -rf "$dest"
+        cp -R "${skill%/}" "$dest"
+        printf '%s\n' "$REPO_ROOT" > "$dest/.godot-skills-copy"
+        linked=$((linked + 1))
+        echo "COPY $agent -> $dest (real copy: Antigravity does not follow links)"
+        continue
+      fi
       if [ -L "$dest" ]; then
         [ "$(readlink "$dest")" = "${skill%/}" ] && continue
         rm "$dest"
@@ -122,6 +138,7 @@ echo "Linked $linked skill folder(s). Package version: $(cat "$REPO_ROOT/VERSION
 # invokes only ever checks the pinned official repo).
 mkdir -p "$HOME_DIR/.godot-skills"
 printf '%s\n' "$REPO_ROOT" > "$HOME_DIR/.godot-skills/clone-path.txt"
+printf '%s\n' "${AGENTS[@]}" > "$HOME_DIR/.godot-skills/agents.txt"
 
 rule_file_for() {
   case "$1" in

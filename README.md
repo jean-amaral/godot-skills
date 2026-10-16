@@ -49,7 +49,7 @@ Reinicie os agentes depois de instalar para eles descobrirem as skills.
 | Claude Code | `~/.claude/skills/` |
 | Codex | `~/.agents/skills/` (pessoal, atual) e `~/.codex/skills/` (compatível) |
 | OpenCode | `~/.config/opencode/skills/` e `~/.agents/skills/` (compatível) |
-| Antigravity | `~/.gemini/config/skills/` e `~/.gemini/antigravity/skills/` |
+| Antigravity | `~/.gemini/config/skills/` e `~/.gemini/antigravity/skills/` — **cópias reais**, não links: o Antigravity CLI não segue junction/symlink ao descobrir skills (verificado no `agy`); o `update` re-sincroniza as cópias a cada pull |
 
 Sem argumentos, o instalador abre um menu e você escolhe os agentes (1) Claude Code, (2) Codex, (3) OpenCode, (4) Antigravity — dá para combinar, ex.: `2,4` — ou todos. Instalação direta sem menu: `.\install\install.ps1 -Agents claude,codex` ou
 `./install/install.sh claude codex`. Um diretório real já existente no

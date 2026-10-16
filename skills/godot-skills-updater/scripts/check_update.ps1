@@ -99,6 +99,9 @@ $dirty = git -C $CloneDir status --porcelain
 if ($dirty) { Out-Status "REFUSED_DIRTY_TREE" @{ REASON = "local changes in the skills clone" }; exit 20 }
 git -C $CloneDir merge --ff-only FETCH_HEAD 2>$null | Out-Null
 if ($LASTEXITCODE -ne 0) { Out-Status "REFUSED_NOT_FAST_FORWARD" @{}; exit 20 }
+# Refresh Antigravity real copies via the repo updater (best effort).
+$upd = Join-Path $CloneDir "install\update.ps1"
+if (Test-Path $upd) { try { & $upd | Out-Null } catch {} }
 $newVersion = (Get-Content (Join-Path $CloneDir "VERSION") | Select-Object -First 1).Trim()
 Add-Content (Join-Path $CloneDir "update.log") "$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss')) updated via updater skill to $newVersion"
 Out-Status "UPDATED" @{ FROM = $localVersion; TO = $newVersion }

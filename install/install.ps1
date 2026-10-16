@@ -86,7 +86,14 @@ if ($Uninstall) {
         foreach ($dir in $agentDirs[$agent]) {
             foreach ($skill in $skillDirs) {
                 $dest = Join-Path $dir $skill.Name
-                if (Test-Path $dest) { Remove-SkillLink $dest | Out-Null }
+if (Test-Path $dest) {
+                    Remove-SkillLink $dest | Out-Null
+                    $copyMarker = Join-Path $dest ".godot-skills-copy"
+                    if ((Test-Path $copyMarker) -and -not (Get-LinkTarget $dest)) {
+                        Remove-Item $dest -Recurse -Force
+                        Write-Host "REMOVED copy $dest"
+                    }
+                }
             }
         }
     }
@@ -116,6 +123,23 @@ foreach ($agent in $Agents) {
         foreach ($skill in $skillDirs) {
             $dest = Join-Path $dir $skill.Name
             $src = $skill.FullName
+            if ($agent -eq "antigravity") {
+                # Antigravity CLI does not follow junctions/symlinks when
+                # discovering skills (verified on agy): use real copies,
+                # refreshed by install/update.ps1 after every pull.
+                $copyMarker = Join-Path $dest ".godot-skills-copy"
+                if (Get-LinkTarget $dest) { Remove-LinkOnly $dest }
+                elseif (Test-Path $dest) {
+                    if (Test-Path $copyMarker) { Remove-Item $dest -Recurse -Force }
+                    elseif (-not $Force) { Write-Host "SKIP $dest (real directory exists; use -Force to replace it with a managed copy)"; continue }
+                    else { Remove-Item $dest -Recurse -Force }
+                }
+                Copy-Item $src $dest -Recurse -Force
+                Set-Content -Path $copyMarker -Value $RepoRoot -Encoding ASCII
+                $linked++
+                Write-Host "COPY $agent -> $dest (real copy: Antigravity does not follow links)"
+                continue
+            }
             $existing = Get-LinkTarget $dest
             if ($existing) {
                 if ($existing -eq $src) { continue }
@@ -141,6 +165,7 @@ Write-Host "Linked $linked skill folder(s). Package version: $(Get-Content (Join
 $markerDir = Join-Path $HomeDir ".godot-skills"
 New-Item -ItemType Directory -Force -Path $markerDir | Out-Null
 Set-Content -Path (Join-Path $markerDir "clone-path.txt") -Value $RepoRoot -Encoding ASCII
+Set-Content -Path (Join-Path $markerDir "agents.txt") -Value $Agents -Encoding ASCII
 
 $ruleFiles = @{
     "claude"      = "$HomeDir\.claude\CLAUDE.md"

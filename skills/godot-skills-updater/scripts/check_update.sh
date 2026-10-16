@@ -93,6 +93,8 @@ fi
 if ! git -C "$CLONE_DIR" merge --ff-only FETCH_HEAD 2>/dev/null; then
   echo "STATUS=REFUSED_NOT_FAST_FORWARD"; exit 20
 fi
+# Refresh Antigravity real copies via the repo updater (best effort).
+bash "$CLONE_DIR/install/update.sh" >/dev/null 2>&1 || true
 new_version="$(head -n1 "$CLONE_DIR/VERSION" | tr -d '[:space:]')"
 echo "$(date '+%Y-%m-%d %H:%M:%S') updated via updater skill to $new_version" >> "$CLONE_DIR/update.log"
 echo "STATUS=UPDATED"; echo "FROM=$local_version"; echo "TO=$new_version"

@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.0.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.0.1-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -56,7 +56,7 @@ destino **nunca** é apagado sem `-Force`: o instalador pula e avisa.
 
 ## Atualização automática
 
-O instalador registra, por padrão, uma atualização diária às 10:00
+O instalador registra, por padrão, uma atualização no login, a cada 4 horas e diária às 10:00
 (Tarefa Agendada no Windows, cron no Linux, LaunchAgent no macOS) que roda
 `git pull --ff-only` neste clone. Como cada agente lê as skills por link
 (junction/symlink) para dentro do clone, **atualizou o clone, atualizou
@@ -73,7 +73,7 @@ todos os agentes** — sem copiar nada.
 ## Versões
 
 - **Pacote** (este repo, tags `vX.Y.Z-MM.AAAA`): `v1.0.0-10.2026` é a
-  primeira distribuição pública das quatro skills, com o conteúdo validado
+  primeira distribuição pública das quatro skills; `v1.0.1-10.2026` reforça a atualização automática (login + a cada 4h + log em `update.log`). Conteúdo validado
   na Godot 4.7.2 (suítes de teste dentro de cada skill, em `tests/`).
 - Cada skill mantém seu histórico interno no próprio `CHANGELOG.md`.
 

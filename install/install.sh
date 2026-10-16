@@ -91,15 +91,15 @@ if [ "${NO_AUTO_UPDATE:-0}" != "1" ]; then
 <plist version="1.0"><dict>
   <key>Label</key><string>com.godot-skills.update</string>
   <key>ProgramArguments</key><array><string>$updater</string></array>
-  <key>StartCalendarInterval</key><dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StartInterval</key><integer>14400</integer>
 </dict></plist>
 PLIST
     launchctl load "$plist" 2>/dev/null || true
-    echo "Auto-update ON: daily 10:00 LaunchAgent (git pull; links are live)."
+    echo "Auto-update ON: LaunchAgent every 4h (git pull; links are live)."
   else
     (crontab -l 2>/dev/null | grep -v "godot-skills-auto-update"; \
-      echo "0 10 * * * $updater # godot-skills-auto-update") | crontab -
-    echo "Auto-update ON: daily 10:00 cron (git pull; links are live)."
+      echo "0 */4 * * * $updater # godot-skills-auto-update") | crontab -
+    echo "Auto-update ON: cron every 4h (git pull; links are live)."
   fi
 else
   echo "Auto-update OFF (NO_AUTO_UPDATE=1). Manual update: install/update.sh"

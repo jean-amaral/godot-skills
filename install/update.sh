@@ -4,4 +4,5 @@
 set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 git -C "$REPO_ROOT" pull --ff-only
+echo "$(date "+%Y-%m-%d %H:%M:%S") updated to $(cat "$REPO_ROOT/VERSION")" >> "$REPO_ROOT/update.log"
 echo "godot-skills is now at $(cat "$REPO_ROOT/VERSION") (skills update in place via links)."

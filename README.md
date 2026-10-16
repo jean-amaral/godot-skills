@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.0.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.0.1-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -85,8 +85,8 @@ trabalho em silêncio. A checagem acontece no máximo uma vez por hora.
 
 ## Versões
 
-- **Pacote**: `v1.0.0-10.2026` é a versão deste primeiro pacote e continua
-  sendo a versão vigente — os reforços de atualização automática (login +
+- **Pacote**: `v1.0.0-10.2026` foi a primeira distribuição pública;
+  a vigente é `v1.0.1-10.2026`. Os reforços de atualização automática (login +
   a cada 4h, log em `update.log`) e a skill `godot-skills-updater` (checagem
   com origem fixada em `jean-amaral/godot-skills` e confirmação do criador)
   foram incorporados **sem mudar o número da versão**. Conteúdo validado

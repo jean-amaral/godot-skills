@@ -44,6 +44,12 @@ if [ "$UNINSTALL" -eq 1 ]; then
       done
     done
   done
+  for file in "$HOME_DIR/.claude/CLAUDE.md" "$HOME_DIR/.codex/AGENTS.md" "$HOME_DIR/.config/opencode/AGENTS.md" "$HOME_DIR/.gemini/GEMINI.md"; do
+    if [ -f "$file" ] && grep -q 'godot-skills-updater:start' "$file"; then
+      sed -i.bak '/<!-- godot-skills-updater:start -->/,/<!-- godot-skills-updater:end -->/d' "$file" && rm -f "$file.bak"
+      echo "Update trigger removed from $file"
+    fi
+  done
   (crontab -l 2>/dev/null | grep -v "godot-skills-auto-update" | crontab -) || true
   rm -f "$HOME_DIR/Library/LaunchAgents/com.godot-skills.update.plist" 2>/dev/null || true
   echo "Uninstall done (repo clone and real directories were kept)."
@@ -78,6 +84,37 @@ for agent in "${AGENTS[@]}"; do
   done
 done
 echo "Linked $linked skill folder(s). Package version: $(cat "$REPO_ROOT/VERSION")"
+
+# Record the clone location and install the session-start update trigger
+# (a marked block in each agent's global rules file; the updater skill it
+# invokes only ever checks the pinned official repo).
+mkdir -p "$HOME_DIR/.godot-skills"
+printf '%s\n' "$REPO_ROOT" > "$HOME_DIR/.godot-skills/clone-path.txt"
+
+rule_file_for() {
+  case "$1" in
+    claude)      echo "$HOME_DIR/.claude/CLAUDE.md" ;;
+    codex)       echo "$HOME_DIR/.codex/AGENTS.md" ;;
+    opencode)    echo "$HOME_DIR/.config/opencode/AGENTS.md" ;;
+    antigravity) echo "$HOME_DIR/.gemini/GEMINI.md" ;;
+  esac
+}
+for agent in "${AGENTS[@]}"; do
+  file="$(rule_file_for "$agent")"
+  [ -z "$file" ] && continue
+  mkdir -p "$(dirname "$file")"
+  if [ -f "$file" ] && grep -q 'godot-skills-updater:start' "$file"; then
+    echo "Trigger already present in $file"; continue
+  fi
+  cat >> "$file" <<'BLOCK'
+
+<!-- godot-skills-updater:start -->
+## godot-skills: verificacao de atualizacao (fazer uma vez por sessao)
+Na primeira tarefa da sessao, carregue a skill godot-skills-updater e siga o protocolo dela: verificar (no maximo 1x/hora) se ha atualizacao SOMENTE no repositorio oficial jean-amaral/godot-skills, avisar o criador mostrando o que mudou e atualizar apenas com confirmacao explicita. Nunca verifique nem baixe skills de outra fonte por esta regra. Se a skill nao estiver instalada neste agente, ignore esta regra em silencio.
+<!-- godot-skills-updater:end -->
+BLOCK
+  echo "Update trigger added to $file"
+done
 
 if [ "${NO_AUTO_UPDATE:-0}" != "1" ]; then
   updater="$REPO_ROOT/install/update.sh"

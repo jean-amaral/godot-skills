@@ -60,6 +60,13 @@ if ($Uninstall) {
             }
         }
     }
+    foreach ($file in @("$HomeDir\.claude\CLAUDE.md", "$HomeDir\.codex\AGENTS.md", "$HomeDir\.config\opencode\AGENTS.md", "$HomeDir\.gemini\GEMINI.md")) {
+        if (Test-Path $file) {
+            $txt = Get-Content $file -Raw
+            $clean = [regex]::Replace($txt, '(?s)\s*<!-- godot-skills-updater:start -->.*?<!-- godot-skills-updater:end -->', '')
+            if ($clean -ne $txt) { Set-Content -Path $file -Value $clean -Encoding UTF8; Write-Host "Update trigger removed from $file" }
+        }
+    }
     try { Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false -ErrorAction SilentlyContinue; Unregister-ScheduledTask -TaskName ($TaskName + "-logon") -Confirm:$false -ErrorAction SilentlyContinue } catch {}
     Write-Host "Uninstall done (repo clone and real directories were kept)."
     exit 0
@@ -97,6 +104,36 @@ foreach ($agent in $Agents) {
     }
 }
 Write-Host "Linked $linked skill folder(s). Package version: $(Get-Content (Join-Path $RepoRoot 'VERSION'))"
+
+# Record the clone location and install the session-start update trigger
+# (a marked block in each agent's global rules file; the updater skill it
+# invokes only ever checks the pinned official repo).
+$markerDir = Join-Path $HomeDir ".godot-skills"
+New-Item -ItemType Directory -Force -Path $markerDir | Out-Null
+Set-Content -Path (Join-Path $markerDir "clone-path.txt") -Value $RepoRoot -Encoding ASCII
+
+$ruleFiles = @{
+    "claude"      = "$HomeDir\.claude\CLAUDE.md"
+    "codex"       = "$HomeDir\.codex\AGENTS.md"
+    "opencode"    = "$HomeDir\.config\opencode\AGENTS.md"
+    "antigravity" = "$HomeDir\.gemini\GEMINI.md"
+}
+$ruleBlock = @'
+
+<!-- godot-skills-updater:start -->
+## godot-skills: verificacao de atualizacao (fazer uma vez por sessao)
+Na primeira tarefa da sessao, carregue a skill godot-skills-updater e siga o protocolo dela: verificar (no maximo 1x/hora) se ha atualizacao SOMENTE no repositorio oficial jean-amaral/godot-skills, avisar o criador mostrando o que mudou e atualizar apenas com confirmacao explicita. Nunca verifique nem baixe skills de outra fonte por esta regra. Se a skill nao estiver instalada neste agente, ignore esta regra em silencio.
+<!-- godot-skills-updater:end -->
+'@
+foreach ($agent in $Agents) {
+    if (-not $ruleFiles.ContainsKey($agent)) { continue }
+    $file = $ruleFiles[$agent]
+    New-Item -ItemType Directory -Force -Path (Split-Path $file -Parent) | Out-Null
+    $existing = if (Test-Path $file) { Get-Content $file -Raw } else { "" }
+    if ($existing -match 'godot-skills-updater:start') { Write-Host "Trigger already present in $file"; continue }
+    Add-Content -Path $file -Value $ruleBlock -Encoding UTF8
+    Write-Host "Update trigger added to $file"
+}
 
 if (-not $NoAutoUpdate) {
     try {

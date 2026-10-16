@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.0.2-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.0.3-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -15,6 +15,7 @@ pesquisa e referências antes de construir.
 | `godot-free-assets` | Buscar e baixar assets **100% gratuitos (só CC0/CC-BY)** compatíveis com o projeto, com crédito e checksum |
 | `godot-visual-craft` | Shaders realistas, materiais PBR avançados e animação com peso |
 | `godot-audio-cinematics` | Direção de áudio, cutscenes com pulo seguro e gramática de câmera |
+| `godot-skills-updater` | Checagem de atualização **só na fonte oficial** `jean-amaral/godot-skills`: avisa, mostra o que mudou e só atualiza com confirmação |
 
 ## Instalação global (uma vez)
 
@@ -66,6 +67,18 @@ todos os agentes** — sem copiar nada.
 - Atualizar na hora: `install\update.ps1` ou `install/update.sh`.
 - Desinstalar links e a tarefa: `.\install\install.ps1 -Uninstall` ou `./install/install.sh --uninstall` (o clone e diretórios reais seus ficam intactos).
 
+### Checagem com confirmação (skill `godot-skills-updater`)
+
+Além da tarefa automática, o instalador grava o caminho do clone em
+`~/.godot-skills/clone-path.txt` e um bloco-gatilho nas regras globais de
+cada agente (`CLAUDE.md`/`AGENTS.md`/`GEMINI.md`). Com isso, no início da
+primeira tarefa da sessão o agente carrega a skill `godot-skills-updater`:
+ela roda `git fetch` **somente** em `jean-amaral/godot-skills` (a URL é
+fixa no script e a identidade do clone é conferida antes da rede; qualquer
+outra origem é recusada), avisa se houver versão nova mostrando os commits
+e **só atualiza com a confirmação do criador**. Sem internet, segue o
+trabalho em silêncio. A checagem acontece no máximo uma vez por hora.
+
 > A atualização automática depende do agendador do sistema operacional
 > estar ativo (tarefa/cron/launchd habilitado). Sem ele, a atualização é o
 > `update` manual acima — um comando.
@@ -73,7 +86,7 @@ todos os agentes** — sem copiar nada.
 ## Versões
 
 - **Pacote** (este repo, tags `vX.Y.Z-MM.AAAA`): `v1.0.0-10.2026` é a
-  primeira distribuição pública das quatro skills; `v1.0.1-10.2026`/`v1.0.2-10.2026` reforçam a atualização automática (login + a cada 4h, duas tarefas no Windows, + log em `update.log`). Conteúdo validado
+  primeira distribuição pública das quatro skills (a quinta, `godot-skills-updater`, chegou na `v1.0.3-10.2026` com checagem de origem fixada e confirmação do criador); `v1.0.1-10.2026`/`v1.0.2-10.2026` reforçam a atualização automática (login + a cada 4h, duas tarefas no Windows, + log em `update.log`). Conteúdo validado
   na Godot 4.7.2 (suítes de teste dentro de cada skill, em `tests/`).
 - Cada skill mantém seu histórico interno no próprio `CHANGELOG.md`.
 

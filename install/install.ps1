@@ -142,10 +142,19 @@ if (-not $NoAutoUpdate) {
         $repeat = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(5) -RepetitionInterval (New-TimeSpan -Hours 4) -RepetitionDuration (New-TimeSpan -Days 3650)
         $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable
         Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $repeat -Settings $settings -Force | Out-Null
+        $logonOk = $false
         try {
-            $logon = New-ScheduledTaskTrigger -AtLogOn
-            Register-ScheduledTask -TaskName ($TaskName + "-logon") -Action $action -Trigger $logon -Settings $settings -Force | Out-Null
-        } catch { Write-Host "WARN logon trigger not registered: $($_.Exception.Message)" }        Write-Host "Auto-update ON: tasks '$TaskName' (every 4h) and '$TaskName-logon' (git pull; links are live)."
+            $logon = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+            Register-ScheduledTask -TaskName ($TaskName + "-logon") -Action $action -Trigger $logon -Settings $settings -Force -ErrorAction Stop | Out-Null
+            $logonOk = [bool](Get-ScheduledTask -TaskName ($TaskName + "-logon") -ErrorAction SilentlyContinue)
+        } catch {
+            Write-Host "WARN logon trigger not registered (access denied by Windows). The every-4h task still keeps the skills updated."
+        }
+        if ($logonOk) {
+            Write-Host "Auto-update ON: tasks '$TaskName' (every 4h) and '$TaskName-logon' (git pull; links are live)."
+        } else {
+            Write-Host "Auto-update ON: task '$TaskName' every 4h (git pull; links are live). Logon trigger not registered."
+        }
     } catch {
         Write-Host "WARN could not register the scheduled task: $($_.Exception.Message)"
         Write-Host "Auto-update stays manual: run install\update.ps1 any time."

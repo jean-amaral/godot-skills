@@ -2,8 +2,8 @@
 # Links this repo's skills into the global skill dirs of Claude Code, Codex,
 # OpenCode and Antigravity, and (by default) registers a daily auto-update.
 #
-#   .\install\install.ps1                      # all agents + auto-update
-#   .\install\install.ps1 -Agents claude,codex # subset
+#   .\install\install.ps1                      # asks which agents (menu)
+#   .\install\install.ps1 -Agents claude,codex # subset, no menu
 #   .\install\install.ps1 -NoAutoUpdate        # links only
 #   .\install\install.ps1 -Uninstall           # remove links + update task
 param(
@@ -24,7 +24,37 @@ $agentDirs = @{
     "opencode"    = @("$HomeDir\.config\opencode\skills", "$HomeDir\.agents\skills")
     "antigravity" = @("$HomeDir\.gemini\config\skills", "$HomeDir\.gemini\antigravity\skills")
 }
+# Interactive choice: with no explicit -Agents on an interactive console,
+# the user picks 1-4 (comma-separated, e.g. "1,3"), 5 or Enter for all.
+# Redirected/non-interactive input keeps the safe default: all agents.
+$explicitAgents = $PSBoundParameters.ContainsKey("Agents")
+if (-not $explicitAgents -and -not $Uninstall -and -not [Console]::IsInputRedirected) {
+    $menu = @{ "1" = "claude"; "2" = "codex"; "3" = "opencode"; "4" = "antigravity" }
+    while ($true) {
+        Write-Host ""
+        Write-Host "Install godot-skills for which agents?"
+        Write-Host "  1) Claude Code"
+        Write-Host "  2) Codex"
+        Write-Host "  3) OpenCode"
+        Write-Host "  4) Antigravity"
+        Write-Host "  5) All of them"
+        $choice = (Read-Host "Choose 1-4 (comma-separated, e.g. 1,3), 5 or Enter for all").Trim().ToLower()
+        if ($choice -eq "" -or $choice -eq "5" -or $choice -eq "all" -or $choice -eq "todos") {
+            $Agents = @("claude", "codex", "opencode", "antigravity"); break
+        }
+        $picked = @()
+        $valid = $true
+        foreach ($part in ($choice -split ",")) {
+            $key = $part.Trim()
+            if ($menu.ContainsKey($key)) { if ($picked -notcontains $menu[$key]) { $picked += $menu[$key] } }
+            else { $valid = $false }
+        }
+        if ($valid -and $picked.Count -gt 0) { $Agents = $picked; break }
+        Write-Host "Invalid choice. Examples: 1  |  2,4  |  5"
+    }
+}
 if ($Agents -contains "all") { $Agents = @("claude", "codex", "opencode", "antigravity") }
+Write-Host "Selected agents: $($Agents -join ', ')"
 
 $skillDirs = Get-ChildItem (Join-Path $RepoRoot "skills") -Directory
 if (-not $skillDirs) { throw "No skills found under $RepoRoot\skills" }

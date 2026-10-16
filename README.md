@@ -51,7 +51,7 @@ Reinicie os agentes depois de instalar para eles descobrirem as skills.
 | OpenCode | `~/.config/opencode/skills/` e `~/.agents/skills/` (compatível) |
 | Antigravity | `~/.gemini/config/skills/` e `~/.gemini/antigravity/skills/` |
 
-Instalação parcial: `.\install\install.ps1 -Agents claude,codex` ou
+Sem argumentos, o instalador abre um menu e você escolhe os agentes (1) Claude Code, (2) Codex, (3) OpenCode, (4) Antigravity — dá para combinar, ex.: `2,4` — ou todos. Instalação direta sem menu: `.\install\install.ps1 -Agents claude,codex` ou
 `./install/install.sh claude codex`. Um diretório real já existente no
 destino **nunca** é apagado sem `-Force`: o instalador pula e avisa.
 

@@ -19,7 +19,39 @@ for arg in "$@"; do
     *) AGENTS+=("$arg") ;;
   esac
 done
+# Interactive choice: with no agent arguments on a terminal, the user picks
+# 1-4 (comma-separated, e.g. "1,3"), 5 or Enter for all. Non-interactive
+# runs keep the safe default: all agents.
+if [ "${#AGENTS[@]}" -eq 0 ] && [ "$UNINSTALL" -eq 0 ] && [ -t 0 ]; then
+  while true; do
+    echo ""
+    echo "Install godot-skills for which agents?"
+    echo "  1) Claude Code"
+    echo "  2) Codex"
+    echo "  3) OpenCode"
+    echo "  4) Antigravity"
+    echo "  5) All of them"
+    printf "Choose 1-4 (comma-separated, e.g. 1,3), 5 or Enter for all: "
+    read -r choice
+    choice="$(printf '%s' "$choice" | tr '[:upper:]' '[:lower:]' | tr -d ' ')"
+    case "$choice" in
+      ""|5|all|todos) AGENTS=(claude codex opencode antigravity); break ;;
+    esac
+    picked=(); valid=1
+    IFS=',' read -ra parts <<< "$choice"
+    for part in "${parts[@]}"; do
+      case "$part" in
+        1) picked+=(claude) ;; 2) picked+=(codex) ;;
+        3) picked+=(opencode) ;; 4) picked+=(antigravity) ;;
+        *) valid=0 ;;
+      esac
+    done
+    if [ "$valid" -eq 1 ] && [ "${#picked[@]}" -gt 0 ]; then AGENTS=("${picked[@]}"); break; fi
+    echo "Invalid choice. Examples: 1  |  2,4  |  5"
+  done
+fi
 if [ "${#AGENTS[@]}" -eq 0 ]; then AGENTS=(claude codex opencode antigravity); fi
+echo "Selected agents: ${AGENTS[*]}"
 
 agent_dirs() {
   case "$1" in

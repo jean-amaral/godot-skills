@@ -60,7 +60,7 @@ if ($Uninstall) {
             }
         }
     }
-    try { Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false -ErrorAction SilentlyContinue } catch {}
+    try { Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false -ErrorAction SilentlyContinue; Unregister-ScheduledTask -TaskName ($TaskName + "-logon") -Confirm:$false -ErrorAction SilentlyContinue } catch {}
     Write-Host "Uninstall done (repo clone and real directories were kept)."
     exit 0
 }
@@ -102,14 +102,13 @@ if (-not $NoAutoUpdate) {
     try {
         $updater = Join-Path $RepoRoot "install\update.ps1"
         $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$updater`""
-        $triggers = @(
-            (New-ScheduledTaskTrigger -Daily -At 10:00),
-            (New-ScheduledTaskTrigger -AtLogOn),
-            (New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Hours 4) -RepetitionDuration (New-TimeSpan -Days 3650))
-        )
+        $repeat = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(5) -RepetitionInterval (New-TimeSpan -Hours 4) -RepetitionDuration (New-TimeSpan -Days 3650)
         $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable
-        Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $triggers -Settings $settings -Force | Out-Null
-        Write-Host "Auto-update ON: task '$TaskName' at logon + every 4h + daily 10:00 (git pull; links are live)."
+        Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $repeat -Settings $settings -Force | Out-Null
+        try {
+            $logon = New-ScheduledTaskTrigger -AtLogOn
+            Register-ScheduledTask -TaskName ($TaskName + "-logon") -Action $action -Trigger $logon -Settings $settings -Force | Out-Null
+        } catch { Write-Host "WARN logon trigger not registered: $($_.Exception.Message)" }        Write-Host "Auto-update ON: tasks '$TaskName' (every 4h) and '$TaskName-logon' (git pull; links are live)."
     } catch {
         Write-Host "WARN could not register the scheduled task: $($_.Exception.Message)"
         Write-Host "Auto-update stays manual: run install\update.ps1 any time."

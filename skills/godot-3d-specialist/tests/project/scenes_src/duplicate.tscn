@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[node name="Main" type="Node3D"]
+
+[node name="Twin" type="Node3D" parent="."]
+
+[node name="Twin" type="Node3D" parent="."]

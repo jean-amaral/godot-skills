@@ -1,0 +1,4 @@
+{
+  "ignore_types": ["NON_UNIFORM_SCALE"],
+  "max_lights": 2
+}

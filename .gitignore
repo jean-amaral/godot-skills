@@ -1,0 +1,11 @@
+# Godot test artifacts (generated inside skills/*/tests when suites run)
+.godot/
+**/tests/project/scenes/
+**/tests/project/devlog/
+**/tests/project/generated/
+**/tests/.test_appdata/
+**/tests/.test_site/
+*.import
+asset_manifest.json
+CREDITS.md
+__pycache__/

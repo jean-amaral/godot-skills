@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devlog — &lt;Nome do jogo&gt;</title>
+<style>
+  :root { color-scheme: dark; --bg:#101318; --card:#1a1f27; --line:#2a313d; --txt:#e8ecf1; --mut:#9aa7b4; --ok:#3fb97c; --warn:#e0a83c; --err:#e05c5c; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--txt); }
+  header, main { max-width: 1080px; margin: 0 auto; padding: 20px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; }
+  .num { font-size: 28px; font-weight: 700; }
+  .mut { color: var(--mut); font-size: 13px; }
+  .bar { height:10px; background:#0b0e12; border-radius:6px; overflow:hidden; }
+  .bar > div { height:100%; background: var(--ok); }
+  .ba { position:relative; overflow:hidden; border-radius:10px; border:1px solid var(--line); }
+  .ba img { display:block; width:100%; }
+  .ph { height:220px; display:grid; place-items:center; background:#232a35; color:var(--mut); font-size:14px; text-align:center; padding:12px; }
+  .ba .after { position:absolute; inset:0; overflow:hidden; }
+  .ba .after img { width:100%; }
+  input[type=range] { width:100%; }
+  video { width:100%; border-radius:10px; border:1px solid var(--line); }
+  table { width:100%; border-collapse: collapse; font-size: 14px; }
+  th, td { border-bottom:1px solid var(--line); padding:6px 8px; text-align:left; }
+  .ok { color: var(--ok); } .warn { color: var(--warn); } .err { color: var(--err); }
+</style>
+</head>
+<body>
+<header>
+  <h1>&lt;Nome do jogo&gt; — Devlog &amp; Dashboard</h1>
+  <p class="mut">Godot 4.7+ · Estilo: &lt;realista | estilizado&gt; · Atualizado em &lt;AAAA-MM-DD&gt;</p>
+  <div class="card">
+    <div class="mut">Progresso geral — &lt;NN&gt;%</div>
+    <div class="bar"><div style="width: 0%"></div></div>
+  </div>
+</header>
+<main>
+  <section class="grid" aria-label="Contadores">
+    <div class="card"><div class="num">0</div><div class="mut">Props modulares prontos</div></div>
+    <div class="card"><div class="num">0</div><div class="mut">Cenas concluídas</div></div>
+    <div class="card"><div class="num">0</div><div class="mut">Marcos entregues</div></div>
+    <div class="card"><div class="num ok">0 erros</div><div class="mut">Auditoria 3D (SceneAuditor)</div></div>
+  </section>
+
+  <h2>Roadmap</h2>
+  <section class="grid">
+    <div class="card"><strong>1. Concepção</strong><p class="mut">☑ GDD · ☐ TDD · ☐ Grade métrica</p></div>
+    <div class="card"><strong>2. Greyboxing</strong><p class="mut">☐ Nível CSG jogável</p></div>
+    <div class="card"><strong>3. Vertical slice</strong><p class="mut">☐ Trecho final com luz e loop</p></div>
+    <div class="card"><strong>4. Produção</strong><p class="mut">☐ Sistemas completos</p></div>
+    <div class="card"><strong>5. Polimento</strong><p class="mut">☐ Game feel e otimização</p></div>
+    <div class="card"><strong>6. QA e export</strong><p class="mut">☐ Auditoria limpa e build</p></div>
+  </section>
+
+  <h2>Timelapse e antes/depois</h2>
+  <!-- <video controls loop muted src="timelapses/environment_evolution.mp4"></video> -->
+  <!-- Troque os .ph por <img src="screenshots/before.png"> e <img src="screenshots/after.png">
+       quando as capturas existirem (mesma camera, mesmo fov). -->
+  <div class="ba" id="ba">
+    <div class="ph">ANTES (greybox)<br>adicione screenshots/before.png</div>
+    <div class="after" id="baAfter" style="width:50%"><div class="ph">DEPOIS (final)<br>adicione screenshots/after.png</div></div>
+  </div>
+  <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois"
+         oninput="document.getElementById('baAfter').style.width = this.value + '%'">
+
+  <h2>Auditoria técnica</h2>
+  <div class="card" id="audit">Carregando audit_report.json…
+    <noscript>(Ative o JavaScript ou abra devlog/audit_report.json.)</noscript>
+  </div>
+
+  <h2>Catálogo de props</h2>
+  <div class="card"><table>
+    <tr><th>Prop</th><th>Dimensões (m)</th><th>Pivô</th><th>Colisor</th></tr>
+    <tr><td>props/wall_2m.tscn</td><td>2,0 × 3,0 × 0,2</td><td>Base Y=0</td><td>BoxShape3D</td></tr>
+  </table></div>
+
+  <h2>Linha do tempo</h2>
+  <div class="card"><strong>&lt;AAAA-MM-DD&gt; — &lt;Marco&gt;</strong>
+    <p class="mut">&lt;O que mudou, decisão técnica tomada e captura correspondente.&gt;</p></div>
+</main>
+<script>
+  fetch('audit_report.json').then(r => r.json()).then(d => {
+    const el = document.getElementById('audit');
+    const cls = d.error_count === 0 ? 'ok' : 'err';
+    el.innerHTML = '<span class="' + cls + '">' + d.error_count + ' erro(s)</span> · ' +
+      d.issue_count + ' issue(s) · cena: ' + d.scene + ' · ' + d.timestamp;
+  }).catch(() => {
+    document.getElementById('audit').innerHTML =
+      '<span class="warn">audit_report.json não encontrado</span> — rode o SceneAuditor.';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "valid":        { "exit": 0, "types": [] },
+  "nonuniform":   { "exit": 1, "types": ["NON_UNIFORM_SCALE"] },
+  "uniform":      { "exit": 0, "types": ["SCALED_PHYSICS_BODY"] },
+  "missing_shape":{ "exit": 1, "types": ["MISSING_COLLISION_SHAPE"] },
+  "floating":     { "exit": 0, "types": ["FLOATING_PROP"] },
+  "empty_mesh":   { "exit": 0, "types": ["EMPTY_MESH_INSTANCE"] },
+  "duplicate":    { "exit": 0, "types": ["DUPLICATE_NODE_NAME"] },
+  "many_lights":  { "exit": 0, "types": [] }
+}

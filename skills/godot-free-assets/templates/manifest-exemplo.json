@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "name": "Nome do Asset",
+      "author": "Autor ou Fonte",
+      "sourcePage": "https://fonte.example/pagina-do-asset",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseEvidence": "https://fonte.example/license",
+      "downloadUrl": "https://fonte.example/download/arquivo.glb",
+      "fileName": "arquivo.glb",
+      "changes": "sem alterações",
+      "expectedSha256": ""
+    },
+    {
+      "name": "Outro Asset (exemplo CC-BY)",
+      "author": "Autor",
+      "sourcePage": "https://fonte.example/outro-asset",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseEvidence": "https://fonte.example/outro-asset#license",
+      "downloadUrl": "https://fonte.example/download/outro.zip",
+      "fileName": "outro.zip",
+      "changes": "redimensionado para 1K",
+      "expectedSha256": ""
+    }
+  ]
+}

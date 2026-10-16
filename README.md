@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.0.3-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.0.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -57,7 +57,7 @@ destino **nunca** é apagado sem `-Force`: o instalador pula e avisa.
 
 ## Atualização automática
 
-O instalador registra, por padrão, uma atualização no login, a cada 4 horas e diária às 10:00
+O instalador registra, por padrão, uma atualização a cada 4 horas (e no login no Windows, quando o sistema permite registrar o gatilho)
 (Tarefa Agendada no Windows, cron no Linux, LaunchAgent no macOS) que roda
 `git pull --ff-only` neste clone. Como cada agente lê as skills por link
 (junction/symlink) para dentro do clone, **atualizou o clone, atualizou
@@ -85,8 +85,11 @@ trabalho em silêncio. A checagem acontece no máximo uma vez por hora.
 
 ## Versões
 
-- **Pacote** (este repo, tags `vX.Y.Z-MM.AAAA`): `v1.0.0-10.2026` é a
-  primeira distribuição pública das quatro skills (a quinta, `godot-skills-updater`, chegou na `v1.0.3-10.2026` com checagem de origem fixada e confirmação do criador); `v1.0.1-10.2026`/`v1.0.2-10.2026` reforçam a atualização automática (login + a cada 4h, duas tarefas no Windows, + log em `update.log`). Conteúdo validado
+- **Pacote**: `v1.0.0-10.2026` é a versão deste primeiro pacote e continua
+  sendo a versão vigente — os reforços de atualização automática (login +
+  a cada 4h, log em `update.log`) e a skill `godot-skills-updater` (checagem
+  com origem fixada em `jean-amaral/godot-skills` e confirmação do criador)
+  foram incorporados **sem mudar o número da versão**. Conteúdo validado
   na Godot 4.7.2 (suítes de teste dentro de cada skill, em `tests/`).
 - Cada skill mantém seu histórico interno no próprio `CHANGELOG.md`.
 

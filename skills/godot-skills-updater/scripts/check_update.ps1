@@ -38,7 +38,7 @@ if (-not $CloneDir) {
     foreach ($cand in @((Join-Path $HOME "godot-skills"))) { if (Test-Path (Join-Path $cand ".git")) { $CloneDir = $cand; break } }
 }
 if (-not $CloneDir -or -not (Test-Path (Join-Path $CloneDir ".git"))) {
-    Out-Status "REFUSED_WRONG_REPO" @{ REASON = "clone not found (run install\install.ps1 first)" }; exit 20
+    Out-Status "REFUSED_WRONG_REPO" @{ REASON = "clone not found (install first: copy the installation text from the godot-skills README to your AI)" }; exit 20
 }
 $CloneDir = [System.IO.Path]::GetFullPath($CloneDir)
 
@@ -99,9 +99,28 @@ $dirty = git -C $CloneDir status --porcelain
 if ($dirty) { Out-Status "REFUSED_DIRTY_TREE" @{ REASON = "local changes in the skills clone" }; exit 20 }
 git -C $CloneDir merge --ff-only FETCH_HEAD 2>$null | Out-Null
 if ($LASTEXITCODE -ne 0) { Out-Status "REFUSED_NOT_FAST_FORWARD" @{}; exit 20 }
-# Refresh Antigravity real copies via the repo updater (best effort).
-$upd = Join-Path $CloneDir "install\update.ps1"
-if (Test-Path $upd) { try { & $upd | Out-Null } catch {} }
+# Refresh Antigravity real copies in place (best effort): its CLI does not follow junctions.
+try {
+    $agentsFile = Join-Path $MarkerDir "agents.txt"
+    if ((Test-Path $agentsFile) -and ((Get-Content $agentsFile) -contains "antigravity")) {
+        foreach ($dir in @((Join-Path $HOME ".gemini\config\skills"), (Join-Path $HOME ".gemini\antigravity\skills"))) {
+            New-Item -ItemType Directory -Force -Path $dir | Out-Null
+            foreach ($skill in (Get-ChildItem (Join-Path $CloneDir "skills") -Directory)) {
+                $dest = Join-Path $dir $skill.Name
+                $copyMarker = Join-Path $dest ".godot-skills-copy"
+                $item = Get-Item $dest -Force -ErrorAction SilentlyContinue
+                if ($item -and $item.LinkType) {
+                    [System.IO.Directory]::Delete($dest)
+                } elseif ((Test-Path $dest) -and -not (Test-Path $copyMarker)) {
+                    continue
+                }
+                if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
+                Copy-Item $skill.FullName $dest -Recurse -Force
+                Set-Content -Path $copyMarker -Value $CloneDir -Encoding ASCII
+            }
+        }
+    }
+} catch {}
 $newVersion = (Get-Content (Join-Path $CloneDir "VERSION") | Select-Object -First 1).Trim()
 Add-Content (Join-Path $CloneDir "update.log") "$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss')) updated via updater skill to $newVersion"
 Out-Status "UPDATED" @{ FROM = $localVersion; TO = $newVersion }

@@ -19,7 +19,7 @@ Verifique se o pacote de skills Godot está atualizado **somente na fonte oficia
 1. Rode o script de checagem uma vez (ele se limita a, no máximo, uma checagem por hora; `-Apply` ignora o limite):
    - Windows: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check_update.ps1`
    - macOS/Linux: `bash scripts/check_update.sh`
-   O script localiza o clone pelo registro `~/.godot-skills/clone-path.txt` criado pelo instalador (ou por `-CloneDir`/`$GODOT_SKILLS_HOME` em teste/manutenção).
+   O script localiza o clone pelo registro `~/.godot-skills/clone-path.txt` criado na instalação (ver o texto de instalação no README do pacote) (ou por `-CloneDir`/`$GODOT_SKILLS_HOME` em teste/manutenção).
 2. Leia a saída `STATUS=...`:
    - `UP_TO_DATE` ou `SKIPPED_THROTTLE`: não diga nada (silêncio é o comportamento certo) e siga o trabalho, salvo se o criador perguntou explicitamente — aí responda a versão atual.
    - `UPDATE_AVAILABLE`: avise o criador com versão local → versão remota e a lista `CHANGES=` (commits novos). **Pergunte** se quer atualizar agora. Não atualize sem um "sim" claro.
@@ -31,4 +31,4 @@ Verifique se o pacote de skills Godot está atualizado **somente na fonte oficia
 
 - Checagem no máximo uma vez por hora por máquina (carimbo em `~/.godot-skills/last-check.txt`), para não atrasar aberturas seguidas.
 - Sem internet, a checagem falha em silêncio operacional (`STATUS=OFFLINE`): o trabalho nunca é bloqueado por causa de atualização.
-- A tarefa agendada de 4h (instalador) continua como rede de segurança aplicando a atualização sem perguntar; esta skill cobre o caso "quero saber e decidir". Se o criador preferir só um dos modos, ele desliga o outro no instalador (`-NoAutoUpdate`).
+- Não existe atualização agendada: esta skill é o único modo de atualizar, sempre com a confirmação do criador. Ao aplicar, o próprio script de checagem recopia as skills do Antigravity (cópias reais marcadas com `.godot-skills-copy`, listadas em `~/.godot-skills/agents.txt`); os demais agentes leem por link e não precisam de recópia.

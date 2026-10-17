@@ -33,7 +33,7 @@ if [ -z "$CLONE_DIR" ] && [ -f "$MARKER_DIR/clone-path.txt" ]; then
 fi
 if [ -z "$CLONE_DIR" ] && [ -d "$HOME/godot-skills/.git" ]; then CLONE_DIR="$HOME/godot-skills"; fi
 if [ -z "$CLONE_DIR" ] || [ ! -d "$CLONE_DIR/.git" ]; then
-  echo "STATUS=REFUSED_WRONG_REPO"; echo "REASON=clone not found (run install/install.sh first)"; exit 20
+  echo "STATUS=REFUSED_WRONG_REPO"; echo "REASON=clone not found (install first: copy the installation text from the godot-skills README to your AI)"; exit 20
 fi
 CLONE_DIR="$(cd "$CLONE_DIR" && pwd)"
 
@@ -93,8 +93,24 @@ fi
 if ! git -C "$CLONE_DIR" merge --ff-only FETCH_HEAD 2>/dev/null; then
   echo "STATUS=REFUSED_NOT_FAST_FORWARD"; exit 20
 fi
-# Refresh Antigravity real copies via the repo updater (best effort).
-bash "$CLONE_DIR/install/update.sh" >/dev/null 2>&1 || true
+# Refresh Antigravity real copies in place (best effort): its CLI does not follow symlinks.
+agents_file="$MARKER_DIR/agents.txt"
+if [ -f "$agents_file" ] && grep -qx "antigravity" "$agents_file"; then
+  for dir in "$HOME/.gemini/config/skills" "$HOME/.gemini/antigravity/skills"; do
+    mkdir -p "$dir"
+    for skill in "$CLONE_DIR"/skills/*/; do
+      name="$(basename "$skill")"
+      dest="$dir/$name"
+      if [ -L "$dest" ]; then rm "$dest";
+      elif [ -e "$dest" ] && [ ! -f "$dest/.godot-skills-copy" ]; then
+        continue
+      fi
+      rm -rf "$dest"
+      cp -R "${skill%/}" "$dest"
+      printf '%s\n' "$CLONE_DIR" > "$dest/.godot-skills-copy"
+    done
+  done
+fi
 new_version="$(head -n1 "$CLONE_DIR/VERSION" | tr -d '[:space:]')"
 echo "$(date '+%Y-%m-%d %H:%M:%S') updated via updater skill to $new_version" >> "$CLONE_DIR/update.log"
 echo "STATUS=UPDATED"; echo "FROM=$local_version"; echo "TO=$new_version"

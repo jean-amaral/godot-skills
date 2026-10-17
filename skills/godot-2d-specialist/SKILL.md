@@ -7,7 +7,7 @@ description: Especialista em jogos 2D na Godot 4.7+ com GDScript 2.0 — Charact
 
 Atue como engenheiro de gameplay e diretor técnico 2D em Godot 4.7+ com GDScript 2.0 tipado. Jogo 2D bom nasce de **movimento que responde, nível legível e colisão honesta** — nessa ordem de prioridade: se controlar é ruim, arte nenhuma salva.
 
-É a skill-mãe do 2D, par da `godot-3d-specialist` (não use aquela para 2D puro; não use esta para 3D). Companheiras: arte/animação 2D em `godot-2d-visual-craft`; HUD/menus em `godot-ui-ux`; câmera com Phantom Camera (2D incluso) em `godot-phantom-camera`; assets CC0/CC-BY em `godot-free-assets`; como pensar/pesquisar em `agent-frontier-reasoning`.
+É a skill-mãe do 2D, par da `godot-3d-specialist` (não use aquela para 2D puro; não use esta para 3D). Companheiras: arte/animação 2D em `godot-2d-visual-craft`; HUD/menus em `godot-ui-ux`; câmera com Phantom Camera (2D incluso) em `godot-phantom-camera`; assets CC0/CC-BY em `godot-free-assets`; multiplayer em `godot-multiplayer` + `godot-multiplayer-2d`; peças da engine (Tween, Timer, Resource, Curve, Noise) em `godot-engine-resources`; como pensar/pesquisar em `agent-frontier-reasoning`.
 
 ## Padrão de trabalho (o mesmo do pacote)
 

@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.5.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.6.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -23,6 +23,10 @@ pesquisa e referências antes de construir.
 | `godot-ai-mcp` | Operar o editor Godot vivo pelo MCP Godot AI: ler, criar, rodar, testar e depurar com logs e screenshots |
 | `godot-2d-specialist` | Jogo 2D na Godot 4.7+: movimento de plataforma/top-down com números em tiles, TileMapLayer, física 2D e estados de personagem |
 | `godot-2d-visual-craft` | Arte 2D: pixel art sem borrar, animação de sprite por estado, tileset/parallax e luz/shader 2D |
+| `godot-multiplayer` | Multiplayer (núcleo): autoridade, RPC, spawn/sincronização, lobby, banda e segurança — da documentação oficial |
+| `godot-multiplayer-3d` | Multiplayer 3D: avatar/física sincronizados com interpolação, tiro validado e áreas de interesse |
+| `godot-multiplayer-2d` | Multiplayer 2D: movimento preciso em rede, estado de TileMap e co-op de câmera |
+| `godot-engine-resources` | Peças da engine sem reinventar: Tween, Timer, Resource, Curve, Gradient, FastNoiseLite e PathFollow |
 
 ## Instalação
 
@@ -40,10 +44,11 @@ Para desinstalar, peça: `Desinstale as skills de "https://github.com/jean-amara
 ## Versões
 
 - **Pacote**: `v1.0.0-10.2026` foi a primeira distribuição pública. A
-  vigente, `v1.5.0-10.2026`, ganha o 2D: `godot-2d-specialist` (movimento,
-  TileMap, física e estrutura 2D) e `godot-2d-visual-craft` (pixel art,
-  animação, tileset, luz e shader 2D). Para 3D single-player o pacote está
-  completo; multiplayer segue fora de escopo por decisão registrada.
+  vigente, `v1.6.0-10.2026`, ganha o multiplayer 2D/3D (`godot-multiplayer`
+  com as dimensões `godot-multiplayer-2d`/`godot-multiplayer-3d`, a partir
+  da documentação oficial) e as peças da engine (`godot-engine-resources`:
+  Tween, Timer, Resource, Curve, Noise, PathFollow). Com isso o pacote
+  cobre 2D, 3D e online; servidor dedicado avançado segue fora de escopo.
   Instalar é colar o texto acima na IA, e é ela quem procura
   atualizações ao iniciar. Conteúdo validado na Godot 4.7.2 (suítes de
   teste dentro de cada skill, em `tests/`).

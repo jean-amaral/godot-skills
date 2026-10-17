@@ -50,6 +50,6 @@ das skills de origem.
 
 ## Fora de escopo (decisão registrada: não adicionar)
 
-- Multiplayer e servidor dedicado: autoridade, prediction/rollback, anti-cheat, matchmaking (godot-multiplayer-networking, godot-server-architecture, godot-genre-battle-royale/moba).
+- Multiplayer: autoridade, RPC, replicação, lobby e anti-trapaça proporcional ganharam skills próprias no pacote em 2026-10-17 (`godot-multiplayer` + `godot-multiplayer-3d`/`godot-multiplayer-2d`), a partir da documentação oficial. Servidor dedicado avançado (prediction/rollback, matchmaking em escala) continua fora.
 - 2D puro e turnos: fora do escopo **desta skill 3D** — o 2D ganhou casa própria no pacote em 2026-10-17 (`godot-2d-specialist` + `godot-2d-visual-craft`). Turnos/card game/rhythm continuam fora do pacote.
 - Plataformas não-alvo: console sob NDA, mobile nativo/IAP e VR/OpenXR (godot-platform-console, godot-platform-mobile, godot-platform-vr).

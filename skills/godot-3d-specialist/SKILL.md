@@ -34,6 +34,7 @@ Isto vale para **tudo** que for construído — cena, prop, sistema, documento o
 - Iluminar e estilizar: PBR realista com HDR/AgX ou visual estilizado (toon, low-poly, retro).
 - Criar shader/material/animação com acabamento: skill companheira `godot-visual-craft`. Áudio, cutscene e direção de câmera: skill companheira `godot-audio-cinematics`. HUD, menus e experiência do jogador: skill companheira `godot-ui-ux`. Asset externo gratuito licenciado: `godot-free-assets`.
 - Plugins do fluxo do criador: instalar Phantom Camera, CSG Blockout e Godot AI (MCP) com `godot-plugins-installer`; operar cada um com `godot-phantom-camera`, `godot-csg-blockout` e `godot-ai-mcp`.
+- Multiplayer 3D: núcleo `godot-multiplayer` + dimensão `godot-multiplayer-3d`. Peças da engine (Tween, Timer, Resource, Curve, Noise, PathFollow) sem reinventar: `godot-engine-resources`.
 - Auditar cenas via `godot --headless`, registrar progresso com capturas e gerar o devlog HTML.
 
 Não use para jogos 2D puros (a casa do 2D é `godot-2d-specialist`/`godot-2d-visual-craft`), outras engines, ou tarefas sem relação com o projeto Godot.

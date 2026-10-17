@@ -8,7 +8,7 @@ Este arquivo guarda princípios de gênero que **não** viram sistema próprio n
 - **Horror/stealth**: percepção e pressão de [navegacao-e-ia-3d.md](navegacao-e-ia-3d.md); esconderijo precisa ser legível (o jogador entende por que foi visto).
 - **Corrida/esporte**: veículo por raycast e física contínua com passo fixo; replay/ghost é gravação de entradas com seed, não gravação de vídeo — só funciona se a simulação for determinística nos trechos gravados.
 - **Estratégia/tower defense**: seleção e ordens são UI + comandos sobre unidades; caminho das ondas é navegação com alvo comum, não IA por unidade inimiga.
-- **Fighting**: frame-data (startup/ativo/recuperação) é dado da animação de ataque; input com buffer e leitura de movimento (sequências direcionais) — sem rollback netcode neste pacote (multiplayer está fora de escopo).
+- **Fighting**: frame-data (startup/ativo/recuperação) é dado da animação de ataque; input com buffer e leitura de movimento (sequências direcionais) — multiplayer de fighting é com a skill `godot-multiplayer`, mas rollback netcode continua fora do pacote.
 - **Visual novel/romance/party**: diálogo de [sistemas-de-gameplay.md](sistemas-de-gameplay.md) com histórico/rollback de leitura e afinidade como stat comum; split-screen local é viewport por jogador com entrada separada por dispositivo.
 
 ## Nichos técnicos

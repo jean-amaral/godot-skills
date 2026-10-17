@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.9.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.0.9-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -49,10 +49,13 @@ Para desinstalar, peça: `Desinstale as skills de "https://github.com/jean-amara
 ## Versões
 
 - **Pacote**: `v1.0.0-10.2026` foi a primeira distribuição pública. A
-  vigente, `v1.9.0-10.2026`, ganha `godot-inventory-hotbar` (inventário e
-  hotbar desenhados a partir de entrevista com o criador, além da pesquisa
-  de referências). Com isso o pacote cobre 2D, 3D, online, menus,
-  inventário e lançamento; servidor dedicado avançado segue fora de escopo.
+  vigente, `v1.0.9-10.2026`, é a consolidação do pacote: 21 skills
+  cobrindo criação 2D e 3D, visual, áudio/câmera, HUD/UI/UX, menus,
+  inventário/hotbar (com entrevista de design), multiplayer 2D/3D, peças
+  da engine, plugins do fluxo (Phantom Camera, CSG Blockout, Godot AI
+  MCP), localização pt-BR + en, performance/testes e export/publicação —
+  todas sob a regra de pesquisar referências atuais antes de criar.
+  Servidor dedicado avançado segue fora de escopo.
   Instalar é colar o texto acima na IA, e é ela quem procura
   atualizações ao iniciar. Conteúdo validado na Godot 4.7.2 (suítes de
   teste dentro de cada skill, em `tests/`).

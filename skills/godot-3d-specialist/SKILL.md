@@ -52,7 +52,7 @@ Não use para jogos 2D puros (a casa do 2D é `godot-2d-specialist`/`godot-2d-vi
 
 **Não use esta skill:**
 
-- "Faça um inventário arrastável em 2D" → skill de UI/2D.
+- "Faça um inventário arrastável em 2D" → skills `godot-inventory-hotbar` (o sistema) e `godot-2d-specialist` (o jogo 2D).
 - "Monte esta cena na Unity/Unreal" → outra engine.
 - "Explique o que é um vetor" → pergunta geral, sem projeto Godot 3D.
 

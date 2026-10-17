@@ -1,6 +1,6 @@
 ---
 name: godot-ui-ux
-description: Design e construção de HUD, menus e experiência do usuário (UI/UX) em jogos Godot 4.7+ — hierarquia de informação, layout que sobrevive a resolução e proporção, navegação por mouse/teclado/controle/toque, feedback, acessibilidade e testes de usabilidade, sempre a partir de pesquisa com referências. Use quando o criador pedir HUD, barra de vida, inventário, menu, tela de configurações, diálogo, tutorial, onboarding ou melhorar "a sensação" de qualquer interface do jogo.
+description: Design e construção de HUD, menus e experiência do usuário (UI/UX) em jogos Godot 4.7+ — hierarquia de informação, layout que sobrevive a resolução e proporção, navegação por mouse/teclado/controle/toque, feedback, acessibilidade e testes de usabilidade, sempre a partir de pesquisa com referências. Use quando o criador pedir HUD, barra de vida, menu, tela de configurações, diálogo, tutorial, onboarding ou melhorar "a sensação" de qualquer interface do jogo (inventário/hotbar têm skill própria: godot-inventory-hotbar).
 ---
 
 # Godot UI/UX
@@ -10,7 +10,7 @@ Interface é gameplay traduzido em leitura: **pesquisa primeiro (jogo e interfac
 ## Quando usar
 
 - Criar ou refazer HUD: vida, recurso, mira, minimapa, objetivos, alertas, dano, interação.
-- Criar menus e telas: principal, pausa, configurações, inventário, loja, diálogo, mapa, codex.
+- Criar menus e telas: principal, pausa, configurações, loja, diálogo, mapa, codex (menus de sistema: `godot-game-menus`; inventário: `godot-inventory-hotbar`).
 - Desenhar a experiência: onboarding, tutorial contextual, primeira sessão, curva de revelação de sistemas.
 - Diagnosticar "a interface está confusa/feia/sem graça" e propor a correção com evidência, não com gosto.
 

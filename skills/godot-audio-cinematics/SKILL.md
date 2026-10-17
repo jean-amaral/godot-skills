@@ -13,7 +13,7 @@ Som e câmera são direção, não enfeite: **pesquisa primeiro (filme, jogo e s
 - Criar cutscene (história, apresentação de área/chefe, transição) com controle de pulabilidade e retorno limpo ao gameplay.
 - Dirigir câmera: plano, movimento, corte, FOV e enquadramento — em cutscene e em câmera de jogo (terceira pessoa, mira, diálogo).
 
-Arquitetura, cena e auditoria continuam no pacote-mãe `godot-3d-specialist`; assets sonoros gratuitos licenciados vêm da `godot-free-assets`.
+Arquitetura, cena e auditoria continuam no pacote-mãe `godot-3d-specialist`; assets sonoros gratuitos licenciados vêm da `godot-free-assets`. Câmera executada com Phantom Camera (transições por prioridade entre PCams) segue a gramática daqui com a operação da skill `godot-phantom-camera`.
 
 ## Protocolo de pesquisa (obrigatório, antes de criar)
 

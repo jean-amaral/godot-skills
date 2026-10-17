@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.3.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.4.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -17,6 +17,10 @@ pesquisa e referências antes de construir.
 | `godot-audio-cinematics` | Direção de áudio, cutscenes com pulo seguro e gramática de câmera |
 | `godot-ui-ux` | HUD, menus e experiência do jogador: hierarquia de informação, fluxos, onboarding, acessibilidade e testes de usabilidade |
 | `agent-frontier-reasoning` | Como o agente pensa e cria em qualquer domínio: pesquisar na internet antes de criar, gerar alternativas, decidir por critérios, verificar com evidência e revisar o próprio trabalho |
+| `godot-plugins-installer` | Baixar e instalar da fonte oficial os plugins do fluxo: Phantom Camera, CSG Blockout e Godot AI (MCP), com versão certa para a engine |
+| `godot-phantom-camera` | Câmeras com Phantom Camera: Host/PCams, prioridades, follow (incl. terceira pessoa), transições, tween e shake |
+| `godot-csg-blockout` | Blockout de nível com CSG Blockout: desenhar, medir contra o personagem, jogar no espaço e congelar em malha reversível |
+| `godot-ai-mcp` | Operar o editor Godot vivo pelo MCP Godot AI: ler, criar, rodar, testar e depurar com logs e screenshots |
 
 ## Instalação
 
@@ -34,9 +38,10 @@ Para desinstalar, peça: `Desinstale as skills de "https://github.com/jean-amara
 ## Versões
 
 - **Pacote**: `v1.0.0-10.2026` foi a primeira distribuição pública. A
-  vigente, `v1.3.0-10.2026`, ganha as skills `godot-ui-ux` (HUD/UI/UX) e
-  `agent-frontier-reasoning` (raciocínio, pesquisa e revisão para qualquer
-  agente). Instalar é colar o texto acima na IA, e é ela quem procura
+  vigente, `v1.4.0-10.2026`, ganha as skills dos plugins do fluxo do
+  criador: `godot-plugins-installer` (instalar da fonte oficial),
+  `godot-phantom-camera`, `godot-csg-blockout` e `godot-ai-mcp` (operar
+  cada plugin extraindo o máximo dele). Instalar é colar o texto acima na IA, e é ela quem procura
   atualizações ao iniciar. Conteúdo validado na Godot 4.7.2 (suítes de
   teste dentro de cada skill, em `tests/`).
 - Cada skill mantém seu histórico interno no próprio `CHANGELOG.md`.

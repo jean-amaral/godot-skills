@@ -36,7 +36,7 @@ Isto vale para **tudo** que for construído — cena, prop, sistema, documento o
 - Plugins do fluxo do criador: instalar Phantom Camera, CSG Blockout e Godot AI (MCP) com `godot-plugins-installer`; operar cada um com `godot-phantom-camera`, `godot-csg-blockout` e `godot-ai-mcp`.
 - Auditar cenas via `godot --headless`, registrar progresso com capturas e gerar o devlog HTML.
 
-Não use para jogos 2D puros, outras engines, ou tarefas sem relação com o projeto Godot.
+Não use para jogos 2D puros (a casa do 2D é `godot-2d-specialist`/`godot-2d-visual-craft`), outras engines, ou tarefas sem relação com o projeto Godot.
 
 ### Exemplos de acionamento
 

@@ -51,5 +51,5 @@ das skills de origem.
 ## Fora de escopo (decisão registrada: não adicionar)
 
 - Multiplayer e servidor dedicado: autoridade, prediction/rollback, anti-cheat, matchmaking (godot-multiplayer-networking, godot-server-architecture, godot-genre-battle-royale/moba).
-- 2D puro e turnos: TileMap 2D, CharacterBody2D, física 2D, card game, rhythm, educacional (godot-tilemap-mastery, godot-characterbody-2d, godot-2d-physics, godot-turn-system e gêneros correspondentes).
+- 2D puro e turnos: fora do escopo **desta skill 3D** — o 2D ganhou casa própria no pacote em 2026-10-17 (`godot-2d-specialist` + `godot-2d-visual-craft`). Turnos/card game/rhythm continuam fora do pacote.
 - Plataformas não-alvo: console sob NDA, mobile nativo/IAP e VR/OpenXR (godot-platform-console, godot-platform-mobile, godot-platform-vr).

@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.8.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.9.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -31,6 +31,7 @@ pesquisa e referências antes de construir.
 | `godot-performance-testing` | Depuração, profiling com monitores oficiais, otimização medida e testes automatizados |
 | `godot-localization` | Localização desde o primeiro texto: todo jogo em pt-BR + en, chaves com `tr()`, pipeline CSV/PO e troca em runtime |
 | `godot-game-menus` | Menus de jogo: título, principal, pausa, configurações, slots de save e créditos, com navegação e estados certos |
+| `godot-inventory-hotbar` | Inventário e hotbar a partir de entrevista de design: modelo de itens, limites, operações, arrastar e navegação por controle |
 
 ## Instalação
 
@@ -48,12 +49,10 @@ Para desinstalar, peça: `Desinstale as skills de "https://github.com/jean-amara
 ## Versões
 
 - **Pacote**: `v1.0.0-10.2026` foi a primeira distribuição pública. A
-  vigente, `v1.8.0-10.2026`, ganha `godot-game-menus` (título, principal,
-  pausa, configurações e slots) e grava a seção **Pesquisa sempre** em
-  todas as skills: pesquisar referências atuais antes de criar é regra do
-  pacote inteiro, não só das skills de criação. Com isso o pacote cobre
-  2D, 3D, online, menus e lançamento; servidor dedicado avançado segue
-  fora de escopo.
+  vigente, `v1.9.0-10.2026`, ganha `godot-inventory-hotbar` (inventário e
+  hotbar desenhados a partir de entrevista com o criador, além da pesquisa
+  de referências). Com isso o pacote cobre 2D, 3D, online, menus,
+  inventário e lançamento; servidor dedicado avançado segue fora de escopo.
   Instalar é colar o texto acima na IA, e é ela quem procura
   atualizações ao iniciar. Conteúdo validado na Godot 4.7.2 (suítes de
   teste dentro de cada skill, em `tests/`).

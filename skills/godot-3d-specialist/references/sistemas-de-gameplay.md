@@ -14,6 +14,7 @@ Padrão comum a todos: **dado em `Resource`, comportamento em componente, identi
 - Item é `Resource` com `id`, nome, ícone e regras (empilhável, equipável); inventário guarda `{id, quantidade}` ou instâncias equipadas com estado próprio — separar "definição" de "instância" evita item único virando clone ao salvar.
 - Grade é apresentação do mesmo modelo de lista; não deixe a grade mandar no dado.
 - Loot é tabela de dados (peso por id) sorteada com RNG do sistema, testável por seed.
+- Inventário/hotbar completos (entrevista de design, modelo, operações, interação): skill `godot-inventory-hotbar`.
 
 ## Diálogo e quests
 

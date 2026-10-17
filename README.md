@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.6.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.7.0-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
 
 ## Skills incluídas
 
@@ -27,6 +27,9 @@ pesquisa e referências antes de construir.
 | `godot-multiplayer-3d` | Multiplayer 3D: avatar/física sincronizados com interpolação, tiro validado e áreas de interesse |
 | `godot-multiplayer-2d` | Multiplayer 2D: movimento preciso em rede, estado de TileMap e co-op de câmera |
 | `godot-engine-resources` | Peças da engine sem reinventar: Tween, Timer, Resource, Curve, Gradient, FastNoiseLite e PathFollow |
+| `godot-export-release` | Exportar e publicar: presets e templates, CLI headless, Windows/Web/Android, assinatura e checklist de lançamento |
+| `godot-performance-testing` | Depuração, profiling com monitores oficiais, otimização medida e testes automatizados |
+| `godot-localization` | Localização desde o primeiro texto: todo jogo em pt-BR + en, chaves com `tr()`, pipeline CSV/PO e troca em runtime |
 
 ## Instalação
 
@@ -44,11 +47,11 @@ Para desinstalar, peça: `Desinstale as skills de "https://github.com/jean-amara
 ## Versões
 
 - **Pacote**: `v1.0.0-10.2026` foi a primeira distribuição pública. A
-  vigente, `v1.6.0-10.2026`, ganha o multiplayer 2D/3D (`godot-multiplayer`
-  com as dimensões `godot-multiplayer-2d`/`godot-multiplayer-3d`, a partir
-  da documentação oficial) e as peças da engine (`godot-engine-resources`:
-  Tween, Timer, Resource, Curve, Noise, PathFollow). Com isso o pacote
-  cobre 2D, 3D e online; servidor dedicado avançado segue fora de escopo.
+  vigente, `v1.7.0-10.2026`, fecha o ciclo de vida do jogo:
+  `godot-export-release` (exportar/publicar), `godot-performance-testing`
+  (depuração, profiling e testes) e `godot-localization` (todo jogo nasce
+  em pt-BR + en). Com isso o pacote cobre 2D, 3D, online e lançamento;
+  servidor dedicado avançado segue fora de escopo.
   Instalar é colar o texto acima na IA, e é ela quem procura
   atualizações ao iniciar. Conteúdo validado na Godot 4.7.2 (suítes de
   teste dentro de cada skill, em `tests/`).

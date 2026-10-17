@@ -5,7 +5,7 @@ Claude): desenvolvimento 3D com padrão de qualidade alto, assets gratuitos
 com licença verificada, criação visual e áudio/cinematografia — sempre com
 pesquisa e referências antes de construir.
 
-**Versão do pacote: `v1.0.9-10.2026`** (ver [VERSION](VERSION) e [releases](#versões))
+**Versão do pacote: `v1.0.9-10.2026`** (ver [VERSION](VERSION), [CHANGELOG](CHANGELOG.md) e [releases](#versões))
 
 ## Skills incluídas
 

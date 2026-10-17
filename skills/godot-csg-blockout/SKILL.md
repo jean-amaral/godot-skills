@@ -9,6 +9,10 @@ Blockout é a pergunta "este espaço funciona?" respondida barato: **prototipar 
 
 Instalação: skill `godot-plugins-installer` (v3.1.0, Godot 4.6+). Construção CSG manual e bake clássico do pacote: `godot-3d-specialist` ([csg-construcao-e-bake.md](../godot-3d-specialist/references/csg-construcao-e-bake.md)) — esta skill é **operar o Blockout** e saber o que ele faz melhor que o CSG cru.
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## O que o plugin muda (e o que não muda)
 
 - Tudo que você constrói é **nó CSG comum da Godot** na árvore (`CSGBox3D`, `CSGCombiner3D`…): mover, redimensionar e apagar corte é editar nó, sem formato próprio trancado. Desligou o plugin, as primitivas ficam.

@@ -9,6 +9,10 @@ Metade do código "esperto" de projeto é a engine refeita à mão, pior. Esta s
 
 As skills de domínio (3D, 2D, visual, UI, multiplayer) dizem **o quê** construir; esta diz com **qual peça da engine**. Sem API inventada: nome de método se confirma na classe oficial da versão.
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## Mapa rápido (a necessidade → a peça)
 
 | Necessidade | Peça da engine |

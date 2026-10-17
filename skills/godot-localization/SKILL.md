@@ -9,6 +9,10 @@ description: Localização de jogos Godot 4.7+ (i18n) a partir da documentação
 
 Base oficial: [Internationalizing games](https://docs.godotengine.org/en/stable/tutorials/i18n/internationalizing_games.html) e a importação de traduções da documentação da Godot 4.7. Experiência da interface localizada (espaço, foco, leitura): `godot-ui-ux`. Assets por idioma (placa, voz): remaps, abaixo.
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## O contrato (desde o primeiro texto)
 
 1. **Nenhum texto visível ao jogador é string solta** em nó ou script: é **chave** (`MENU_START`, `HUD_HEALTH`, `ITEM_SWORD_NAME`) resolvida com `tr()`. Termos da engine ficam em inglês no código/identificadores; o jogador lê a chave traduzida.

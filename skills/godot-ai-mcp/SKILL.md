@@ -9,6 +9,10 @@ O MCP transforma o agente de "quem edita texto e torce" em **quem opera o editor
 
 Instalação do plugin e ligação do cliente: skill `godot-plugins-installer` (v4.3.0, Godot 4.7+, requer `uv`). Catálogo completo e oficial: `docs/TOOLS.md` do repositório `hi-godot/godot-ai` (46 ferramentas, 120+ operações). Esta skill é o **método de trabalho** sobre ele.
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## Como a ligação funciona (para depurar sem chute)
 
 ```

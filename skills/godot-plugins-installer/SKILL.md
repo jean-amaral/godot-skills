@@ -9,6 +9,10 @@ Instale os três plugins do fluxo do criador **da fonte oficial, na versão cert
 
 Versões fixadas nesta skill (conferidas nos repositórios oficiais em 2026-10-17) em [references/catalogo-de-plugins.md](references/catalogo-de-plugins.md). Ao instalar, confira se saiu release mais nova e, se usar outra, registre a troca.
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## Antes de baixar qualquer coisa
 
 1. **Ache o projeto e a engine**: leia `project.godot` (`config_version`, recursos usados) e a versão da Godot do criador. Compatibilidade mínima: Phantom Camera 4.4+, CSG Blockout 4.6+, Godot AI 4.7+ (linha 4.x). Engine abaixo disso = **pare e reporte** qual plugin não entra e por quê — não force.

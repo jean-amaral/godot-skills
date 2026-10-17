@@ -9,6 +9,10 @@ Câmera boa é direção invisível: o jogador olha para o jogo, não para a câ
 
 Instalação do plugin: skill `godot-plugins-installer` (v0.11.0.3, Godot 4.4+). Direção/gramática de câmera (o que filmar): `godot-audio-cinematics`. Esta skill é **como operar o Phantom** sem lutar com ele.
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## A arquitetura em 30 segundos
 
 ```

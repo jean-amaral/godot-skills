@@ -14,7 +14,7 @@ Interface é gameplay traduzido em leitura: **pesquisa primeiro (jogo e interfac
 - Desenhar a experiência: onboarding, tutorial contextual, primeira sessão, curva de revelação de sistemas.
 - Diagnosticar "a interface está confusa/feia/sem graça" e propor a correção com evidência, não com gosto.
 
-Arquitetura de cena/gameplay continua em `godot-3d-specialist` (cuja referência [ui-de-jogo.md](../godot-3d-specialist/references/ui-de-jogo.md) cobre layout, listas e tema em runtime); esta skill é a camada de **design e experiência**. Acabamento visual/materiais: `godot-visual-craft`. Assets de UI gratuitos licenciados: `godot-free-assets`. Como pensar antes de criar: `agent-frontier-reasoning`.
+Arquitetura de cena/gameplay continua em `godot-3d-specialist` (cuja referência [ui-de-jogo.md](../godot-3d-specialist/references/ui-de-jogo.md) cobre layout, listas e tema em runtime); esta skill é a camada de **design e experiência**. Menus de título/principal/pausa/configurações têm skill própria: `godot-game-menus`. Acabamento visual/materiais: `godot-visual-craft`. Assets de UI gratuitos licenciados: `godot-free-assets`. Como pensar antes de criar: `agent-frontier-reasoning`.
 
 ## Protocolo de pesquisa (obrigatório, antes de desenhar)
 

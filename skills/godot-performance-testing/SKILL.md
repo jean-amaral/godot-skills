@@ -9,6 +9,10 @@ Performance sem medição é superstição; bug sem reprodução é opinião. Es
 
 Base oficial: classe [`Performance`](https://docs.godotengine.org/en/stable/classes/class_performance.html) e o Debugger da documentação da Godot 4.7. Suítes das skills do pacote ficam em `skills/<skill>/tests/`; testes via MCP em `godot-ai-mcp` (`test_run`).
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## Depuração (achar o bug antes de chutar)
 
 1. **Reproduza com receita**: passos mínimos, estado inicial, o que era esperado × o que acontece. Sem receita, não há bug — há um boato.

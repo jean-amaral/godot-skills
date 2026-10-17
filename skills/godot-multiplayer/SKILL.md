@@ -7,6 +7,10 @@ description: Multiplayer de alto nível na Godot 4.7+ baseado na documentação 
 
 Multiplayer não é recurso que se adiciona no fim: é **arquitetura** — quem decide, quem confia, o que trafega. A skill-mãe define esse contrato (documentação oficial: [High-level multiplayer](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html)); a dimensão mora nas companheiras `godot-multiplayer-3d` e `godot-multiplayer-2d`. Sem API inventada: confirme classes na documentação da versão do projeto.
 
+## Pesquisa sempre (regra do pacote)
+
+Antes de criar ou alterar qualquer coisa nesta disciplina, **pesquise informações e referências atuais**: documentação oficial da versão do projeto, referências de imagem/vídeo/texto e como quem é bom resolve o mesmo problema — e transforme a pesquisa em especificação antes de executar. Primeira ideia é rascunho, nunca entrega. Método completo (perguntas, fontes, verificação cruzada e registro): skill `agent-frontier-reasoning`. Sem internet, declare explicitamente o que ficou não verificado e baixe a confiança do afetado.
+
 ## A decisão que vem antes de todo código
 
 Escreva e registre (no GDD/TDD) antes de abrir o editor:
